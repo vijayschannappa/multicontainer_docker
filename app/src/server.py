@@ -9,10 +9,10 @@ import mysql.connector
 
 class DBManager:
     def __init__(self, database='example', host="db", user="root", password_file=None):
-        pf = open(password_file, 'r')
+        #pf = open(password_file, 'r')
         self.connection = mysql.connector.connect(
             user=user, 
-            password=pf.read(),
+            password=password_file,
             host=host,
             database=database,
             auth_plugin='mysql_native_password'
@@ -41,7 +41,7 @@ conn = None
 def listBlog():
     global conn
     if not conn:
-        conn = DBManager(password_file='/run/secrets/db-password')
+        conn = DBManager(password_file='db-78n9n')
         conn.populate_db()
     rec = conn.query_titles()
 
